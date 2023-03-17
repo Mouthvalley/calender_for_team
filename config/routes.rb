@@ -10,11 +10,11 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about', to: 'homes#about'
 
-    # patch '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    #unsubscribe：退会機能
+    delete 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe_user'
     resources :users, only: [:update]
     get 'users/my_page' => 'users#index', as: 'my_page'
     get 'users/my_page/edit' => 'users#edit', as: 'my_page_edit'
-    # get '/users/confirm' => 'users#confirm'
   end
 
 
