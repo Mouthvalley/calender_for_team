@@ -1,0 +1,8 @@
+<p><%= @schedule.schedule_date %></p>
+<p><%= @schedule.schedule_content %></p>
+<p><%= @schedule.published_at %></p>
+
+<%= link_to '編集', edit_schedule_path(@schedule) %>
+<%= link_to '削除', schedule_path(@schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+
+<%= link_to 'スケジュール一覧へ戻る', schedules_path %>

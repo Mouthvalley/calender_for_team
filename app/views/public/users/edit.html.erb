@@ -1,10 +1,8 @@
 <h1>User Edit</h1>
 <p>This is the users edit page.</p>
 
-<h1>マイページ</h1>
-
 <%= form_with(model: @user, local: true) do |f| %>
-<div>
+  <div>
     <%= f.label :last_name, '名前' %>
     <%= f.text_field :last_name %>
   </div>
@@ -20,18 +18,20 @@
     <%= f.label :first_name_kana, '名前' %>
     <%= f.text_field :first_name_kana %>
   </div>
-    <div>
+  <div>
     <%= f.label :email, 'メールアドレス' %>
     <%= f.email_field :email %>
-<div>
-      <%= f.label :profile_image %>
-        <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
-      <% if f.object.profile_image.attached? %>
-        <%= image_tag f.object.profile_image, size: "200x200" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-      <% end %>
-    </div>
+  </div>
+  <div>
+    <%= f.label :profile_image %>
+      <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+    <% if f.object.profile_image.attached? %>
+      <%= image_tag f.object.profile_image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "100x100" %>
+    <% end %>
+  </div>
+  <div>
     <%= f.label :password, 'パスワード' %>
     <%= f.password_field :password %>
   </div>
@@ -41,5 +41,6 @@
   </div>
   <%= f.submit '更新する' %>
 <% end %>
+<%= link_to "マイページに戻る", my_page_path, class: "btn btn-secondary" %>
 
 <%= button_to '退会する', unsubscribe_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' } %>

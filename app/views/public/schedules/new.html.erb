@@ -1,0 +1,11 @@
+<h1>スケジュールを作成する</h1>
+
+<%= form_with(model: @schedule, url: schedules_path) do |form| %>
+  <%= form.label :schedule_date %>
+  <%= form.date_field :schedule_date %>
+
+  <%= form.label :schedule_content %>
+  <%= form.text_area :schedule_content %>
+
+  <%= form.submit 'スケジュールを作成する' %>
+<% end %>
