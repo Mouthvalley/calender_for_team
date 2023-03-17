@@ -2,7 +2,7 @@
 
 <%= form_with(model: @schedule, url: schedules_path) do |form| %>
   <%= form.label :schedule_date %>
-  <%= form.date_field :schedule_date %>
+  <%= form.datetime_field :schedule_date, options: { use_month_numbers: true } %>
 
   <%= form.label :schedule_content %>
   <%= form.text_area :schedule_content %>

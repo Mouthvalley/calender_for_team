@@ -33,7 +33,7 @@ class Public::SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find(params[:id])
   end
-  
+
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy

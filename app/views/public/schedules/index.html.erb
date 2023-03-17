@@ -3,7 +3,7 @@
 <ul>
   <% @schedules.each do |schedule| %>
     <li>
-      <%= schedule.schedule_date %>
+      <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
       <%= schedule.schedule_content %>
       <%= schedule.published_at %>
       <%= link_to '編集', edit_schedule_path(schedule) %>

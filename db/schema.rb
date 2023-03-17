@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2023_03_17_053551) do
   end
 
   create_table "schedules", force: :cascade do |t|
-    t.date "schedule_date"
+    t.datetime "schedule_date"
     t.text "schedule_content"
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
