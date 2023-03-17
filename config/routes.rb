@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     #unsubscribe：退会機能
     delete 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe_user'
     resources :users, only: [:update]
-    get 'users/my_page' => 'users#index', as: 'my_page'
-    get 'users/my_page/edit' => 'users#edit', as: 'my_page_edit'
-
+      get 'my_page' => 'users#index', as: 'my_page'
+      get 'my_page/edit' => 'users#edit', as: 'my_page_edit'
+    #   collection do
+    #     get 'edit_password'
+    #     put 'update_password'
+    #   end
+    # end
     resources :schedules
-    # , only: [:new, :create, :edit, :update, :set_schedule]
   end
-
-
-
 end

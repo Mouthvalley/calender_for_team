@@ -3,7 +3,7 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <div>
-    <%= f.label :last_name, '名前' %>
+    <%= f.label :last_name, '苗字' %>
     <%= f.text_field :last_name %>
   </div>
   <div>
@@ -11,11 +11,11 @@
     <%= f.text_field :first_name %>
   </div>
   <div>
-    <%= f.label :last_name_kana, '名前' %>
+    <%= f.label :last_name_kana, 'カナ(苗字)' %>
     <%= f.text_field :last_name_kana %>
   </div>
   <div>
-    <%= f.label :first_name_kana, '名前' %>
+    <%= f.label :first_name_kana, 'カナ(名前)' %>
     <%= f.text_field :first_name_kana %>
   </div>
   <div>
@@ -30,14 +30,6 @@
     <% else %>
       <%= image_tag 'no_image', size: "100x100" %>
     <% end %>
-  </div>
-  <div>
-    <%= f.label :password, 'パスワード' %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation, 'パスワードの確認' %>
-    <%= f.password_field :password_confirmation %>
   </div>
   <%= f.submit '更新する' %>
 <% end %>

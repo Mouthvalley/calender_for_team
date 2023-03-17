@@ -11,7 +11,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       ## Rememberable
       t.datetime :remember_created_at
-
+      #会員ID
+      t.string   :membership_id
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
