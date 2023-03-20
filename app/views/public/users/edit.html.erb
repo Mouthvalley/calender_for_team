@@ -33,6 +33,6 @@
   </div>
   <%= f.submit '更新する' %>
 <% end %>
-<%= link_to "マイページに戻る", my_page_path, class: "btn btn-secondary" %>
+<%= link_to "マイページに戻る", my_page_path %>
 
 <%= button_to '退会する', unsubscribe_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' } %>

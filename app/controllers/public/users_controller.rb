@@ -3,7 +3,9 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
 
   def index
-    @user = current_user
+    @user_detail = current_user
+    #追加記述
+    @users = User.all
   end
 
   def edit

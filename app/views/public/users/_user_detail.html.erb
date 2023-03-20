@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>ユーザー名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if user %>
+      <tr>
+        <td><%= user.membership_id %></td>
+        <td><%= "#{user.last_name}#{user.first_name}" %></td>
+        <% if user.profile_image.attached? %>
+          <td><%= image_tag url_for(user.profile_image), size: "100x100" %></td>
+        <% else %>
+          <td><%= image_tag "no_image.jpg", size: "100x100" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
