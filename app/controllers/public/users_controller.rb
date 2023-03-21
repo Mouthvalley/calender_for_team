@@ -3,7 +3,8 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
 
   def index
-    @user_detail = current_user
+    @info = current_user
+    @schedule = Schedule.new
     #追加記述
     @users = User.all
   end

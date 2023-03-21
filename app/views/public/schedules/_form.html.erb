@@ -1,5 +1,3 @@
-<h1>スケジュールを作成する</h1>
-
 <%= form_with(model: @schedule, url: schedules_path) do |form| %>
   <%= form.label :schedule_date %>
   <%= form.datetime_field :schedule_date, options: { use_month_numbers: true } %>

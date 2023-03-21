@@ -1,8 +1,9 @@
 class Public::SchedulesController < ApplicationController
   before_action :set_schedule, only: [:edit, :update]
 
-  def new
+  def index
     @schedule = Schedule.new
+    @schedules = Schedule.all.order(published_at: :desc)
   end
 
   def create
@@ -14,12 +15,8 @@ class Public::SchedulesController < ApplicationController
     end
   end
 
-  def index
-    @schedules = Schedule.all.order(published_at: :desc)
-  end
-
   def edit
-    # @schedule = Schedule.find(params[:id])
+    @schedule = Schedule.find(params[:id])
   end
 
   def update

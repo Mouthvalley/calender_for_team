@@ -6,8 +6,8 @@
 </div>
 
 
-<% if @user_detail.present? %>
-  <%= render partial: 'public/users/user_detail', locals: { user: @user_detail } %>
+<% if @info.present? %>
+  <%= render partial: 'public/users/info', locals: { user: @info } %>
 <% end %>
 
 <%= link_to "ユーザー編集画面", my_page_edit_path%>
@@ -20,3 +20,5 @@
   <%= user.membership_id %>
   <%= "#{user.last_name}#{user.first_name}" %>
 <% end %>
+
+<%= render 'public/schedules/form', schedule: @schedule %>

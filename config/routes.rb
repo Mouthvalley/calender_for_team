@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'my_page/edit' => 'users#edit', as: 'my_page_edit'
     resources :users, only: [:update] do
       resource :relationships, only: [:create, :destroy]
+      #フォロー一覧
+      get 'followings' => 'relationships#followings', as: 'followings'
     end
 
     resources :schedules
