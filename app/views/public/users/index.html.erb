@@ -1,24 +1,22 @@
-<h1>Users</h1>
-<p>This is the users index page.</p>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
-<div>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>Users</h2>
+      <p>This is the users index page.</p>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to "ユーザー編集画面", my_page_edit_path%>
+      <%= render partial: 'public/searches/search', locals: { url: search_path } %>
+      <%= render 'public/schedules/form', schedule: @schedule %>
+    </div>
+  </div>
 </div>
+    
+        <!--追加記述-->
+        <% @users.each do |user| %>
+          <%= user.membership_id %>
+          <%= "#{user.last_name}#{user.first_name}" %>
+        <% end %>
 
-
-<% if @info.present? %>
-  <%= render partial: 'public/users/info', locals: { user: @info } %>
-<% end %>
-
-<%= link_to "ユーザー編集画面", my_page_edit_path%>
-
-<%= render partial: 'public/searches/search', locals: { url: search_path } %>
-
-
-<!--追加記述-->
-<% @users.each do |user| %>
-  <%= user.membership_id %>
-  <%= "#{user.last_name}#{user.first_name}" %>
-<% end %>
-
-<%= render 'public/schedules/form', schedule: @schedule %>
+       
