@@ -1,0 +1,12 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h5>フォロー一覧</h5>
+      <% @users.each do |user| %>
+        <%= user.membership_id %>
+        <%= "#{user.last_name}#{user.first_name}" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

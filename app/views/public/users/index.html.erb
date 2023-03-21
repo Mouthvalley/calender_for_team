@@ -1,22 +1,23 @@
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
+<div class="container">
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <div class="row">
+    <div class="col-md-3">
       <h2>User info</h2>
       <%= render 'public/users/info', user: current_user %>
       <%= link_to my_page_edit_path, class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %></br>
-      <%= render partial: 'public/searches/search', locals: { url: search_path } %></br>
+
+      <p></p>
       <%= render 'public/schedules/form', schedule: @schedule %></br>
+    </div>
+    <div class="col-md-6 text-center">中央</div>
+    <div class="col-md-3">
+      <%= render partial: 'public/searches/search', locals: { url: search_path } %>
+      <%= link_to "フォロー一覧", followings_user_path(@user) %></br>
+      <% @user.followings.each do |user| %>
+        <%= render partial: 'public/users/info', locals: { user: user } %>
+      <% end %>
     </div>
   </div>
 </div>
-
-        <!--追加記述-->
-        <% @users.each do |user| %>
-          <%= user.membership_id %>
-          <%= "#{user.last_name}#{user.first_name}" %>
-        <% end %>
-

@@ -1,12 +1,11 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
+  before_action :set_user, only: [:followings, :followers]
 
   def index
-    # @info = current_user
     @user = current_user
     @schedule = Schedule.new
-    #追加記述
     @users = User.all
   end
 
@@ -32,11 +31,21 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def set_user
-    @user = current_user
+  def followings
+    @users = @user.followings
   end
 
+  # def followers
+  #   @users = @user.followers
+  # end
+
+
   private
+
+  def set_user
+    # @user = current_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :profile_image, :password)

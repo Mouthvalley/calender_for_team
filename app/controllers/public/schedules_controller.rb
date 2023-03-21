@@ -8,12 +8,15 @@ class Public::SchedulesController < ApplicationController
 
   def create
     @schedule = Schedule.new(schedule_params)
-    if @schedule.save
+    if @schedule.schedule_content.present? && @schedule.save
       redirect_to schedules_path, notice: 'スケジュールを作成しました'
     else
-      render :new
+      flash.now[:alert] = 'スケジュールの作成に失敗しました'
+      @schedules = Schedule.all.order(published_at: :desc)
+      render :index
     end
   end
+
 
   def edit
     @schedule = Schedule.find(params[:id])
