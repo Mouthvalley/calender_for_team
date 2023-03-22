@@ -32,6 +32,7 @@ class Public::SchedulesController < ApplicationController
 
   def show
     @schedule = Schedule.find(params[:id])
+    @user = current_user
   end
 
   def destroy

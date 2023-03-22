@@ -1,0 +1,6 @@
+<%= form_with(model: @share_schedule, local: true) do |f| %>
+  <%= f.label :user_memberships_id, "共有するユーザーを選択してください：" %>
+  <%= f.collection_select :user_memberships_id, User.all, :id, :membership_id %>
+  <%= f.hidden_field :schedule_id, value: @schedule.id %>
+  <%= f.submit "共有する" %>
+<% end %>

@@ -13,3 +13,5 @@
 </ul>
 
 <%= render 'public/schedules/form' %>
+
+<%= render partial: 'public/share_schedules/form', locals: {share_schedule: ShareSchedule.new, schedule: @schedule} %>

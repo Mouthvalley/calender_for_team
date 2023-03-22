@@ -1,4 +1,4 @@
-<%= link_to "フォロー一覧", followings_user_path(@user) %>
+<!--フォロー一覧-->
 <% @users.each do |user| %>
   <%= user.membership_id %>
   <%= "#{user.last_name}#{user.first_name}" %>

@@ -1,8 +1,13 @@
-<p><%= @schedule.schedule_date %></p>
-<p><%= @schedule.schedule_content %></p>
-<p><%= @schedule.published_at %></p>
+<h1>スケジュール詳細</h1>
 
-<%= link_to '編集', edit_schedule_path(@schedule) %>
+<%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
+<%= @schedule.schedule_content %></br>
+
+<%= link_to '編集', edit_schedule_path(@schedule) %></br>
 <%= link_to '削除', schedule_path(@schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 
-<%= link_to 'スケジュール一覧へ戻る', schedules_path %>
+<%= link_to 'スケジュール一覧へ戻る', schedules_path %></br>
+
+<% @user.followings.each do |user| %>
+  <%= render partial: 'public/users/info', locals: { user: user } %>
+<% end %>
