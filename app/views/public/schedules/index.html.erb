@@ -2,6 +2,7 @@
 
 <ul>
   <% @schedules.each do |schedule| %>
+  <%# current_user.schedules.each do |schedule| %>
     <li>
       <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
       <%= schedule.schedule_content %>

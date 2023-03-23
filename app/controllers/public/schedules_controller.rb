@@ -23,7 +23,6 @@ class Public::SchedulesController < ApplicationController
     end
   end
 
-
   def edit
     @schedule = Schedule.find(params[:id])
   end
@@ -55,5 +54,6 @@ class Public::SchedulesController < ApplicationController
 
   def set_schedule
     @schedule = Schedule.find(params[:id])
+    redirect_to user_schedules_path, alert: '他のユーザーのスケジュールにアクセスすることはできません' unless @schedule.user == current_user
   end
 end
