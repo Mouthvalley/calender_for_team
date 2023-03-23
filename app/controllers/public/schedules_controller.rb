@@ -2,8 +2,14 @@ class Public::SchedulesController < ApplicationController
   before_action :set_schedule, only: [:edit, :update]
 
   def index
+    @user = current_user
     @schedule = Schedule.new
-    @schedules = Schedule.all.order(published_at: :desc)
+    @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
+
+    respond_to do |format|
+      format.html # index.html.erbを表示する
+      format.json { render json: @schedules } # JSONとしてすべてのスケジュールを返す
+    end
   end
 
   def create

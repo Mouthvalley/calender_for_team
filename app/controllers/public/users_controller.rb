@@ -1,7 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
-  before_action :set_user, only: [:followings, :followers]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password, :followings, :followers]
 
   def index
     @user = current_user
