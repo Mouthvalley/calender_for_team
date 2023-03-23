@@ -28,9 +28,5 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  #スケジュール共有機能
-  has_many :share_schedules, foreign_key: "user_memberships_id", dependent: :destroy
-  has_many :schedules, through: :share_schedules
-
 end
 

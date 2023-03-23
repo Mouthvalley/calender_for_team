@@ -6,12 +6,13 @@
       <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
       <%= schedule.schedule_content %>
       <%= schedule.published_at %>
-      <%= link_to '編集', edit_schedule_path(schedule) %>
-      <%= link_to '削除', schedule_path(schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to '詳細', user_schedule_path(current_user, schedule) %>
+      <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
+      <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     </li>
   <% end %>
 </ul>
 
 <%= render 'public/schedules/form' %>
 
-<%= render partial: 'public/share_schedules/form', locals: {share_schedule: ShareSchedule.new, schedule: @schedule} %>
+<%= link_to 'User Infoへ戻る', my_page_path %>

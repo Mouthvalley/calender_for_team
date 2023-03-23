@@ -1,6 +1,6 @@
 <h1>スケジュールの編集</h1>
 
-<%= form_with(model: @schedule, local: true) do |f| %>
+<%= form_with(model: @schedule, url: user_schedule_path(current_user, @schedule), local: true) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>

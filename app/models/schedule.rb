@@ -1,5 +1,4 @@
 class Schedule < ApplicationRecord
-  #スケジュール共有機能
-  has_many :share_schedules, dependent: :destroy
-  has_many :users, through: :share_schedules
+  has_many :schedule_shares, dependent: :destroy
+  has_many :shared_users, through: :schedule_shares, source: :user
 end

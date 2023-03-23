@@ -1,9 +1,9 @@
 <table class='table'>
   <tr>
     <% if user.profile_image.attached? %>
-      <%= image_tag url_for(user.profile_image), size: "100x100" %>
+      <%= image_tag url_for(user.profile_image), size: "75x75" %>
     <% else %>
-      <%= image_tag "no_image.jpg", size: "100x100" %>
+      <%= image_tag "no_image.jpg", size: "75x75" %>
     <% end %>
   </tr>
   <tr>

@@ -9,7 +9,7 @@ class Public::SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(schedule_params)
     if @schedule.schedule_content.present? && @schedule.save
-      redirect_to schedules_path, notice: 'スケジュールを作成しました'
+      redirect_to user_schedules_path, notice: 'スケジュールを作成しました'
     else
       flash.now[:alert] = 'スケジュールの作成に失敗しました'
       @schedules = Schedule.all.order(published_at: :desc)
@@ -24,7 +24,7 @@ class Public::SchedulesController < ApplicationController
 
   def update
     if @schedule.update(schedule_params)
-      redirect_to schedule_path(@schedule), notice: 'スケジュールを更新しました'
+      redirect_to user_schedules_path(@schedule), notice: 'スケジュールを更新しました'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class Public::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
-    redirect_to schedules_path, notice: 'スケジュールを削除しました'
+    redirect_to user_schedules_path, notice: 'スケジュールを削除しました'
   end
 
   private

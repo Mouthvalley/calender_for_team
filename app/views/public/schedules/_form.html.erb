@@ -1,4 +1,4 @@
-<%= form_with(model: @schedule, url: schedules_path) do |form| %>
+<%= form_with(model: @schedule, url: user_schedules_path(current_user)) do |form| %>
   <%= form.label :schedule_date %>
   <%= form.datetime_field :schedule_date, options: { use_month_numbers: true } %>
   <p></p>

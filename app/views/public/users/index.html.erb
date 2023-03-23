@@ -7,9 +7,9 @@
       <%= link_to my_page_edit_path, class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %></br>
-
       <p></p>
       <%= render 'public/schedules/form', schedule: @schedule %></br>
+      <%= link_to "スケジュール一覧", user_schedules_path(current_user) %></br>
     </div>
     <div class="col-md-6 text-center">中央</div>
     <div class="col-md-3">

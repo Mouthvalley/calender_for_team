@@ -1,13 +1,21 @@
-<h1>スケジュール詳細</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h4>スケジュール詳細</h4>
+      <%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
+      <%= @schedule.schedule_content %></br>
 
-<%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
-<%= @schedule.schedule_content %></br>
-
-<%= link_to '編集', edit_schedule_path(@schedule) %></br>
-<%= link_to '削除', schedule_path(@schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-
-<%= link_to 'スケジュール一覧へ戻る', schedules_path %></br>
-
-<% @user.followings.each do |user| %>
-  <%= render partial: 'public/users/info', locals: { user: user } %>
-<% end %>
+      <%= link_to '編集', edit_user_schedule_path(current_user, @schedule) %></br>
+      <%= link_to '削除', user_schedule_path(current_user, @schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %></br>
+      <%= link_to 'スケジュール一覧へ戻る', user_schedule_path %></br>
+      <%= link_to 'User Infoへ戻る', my_page_path %></br>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+      <p>フォロー一覧</p>
+      <% @user.followings.each do |user| %>
+        <%= render partial: 'public/users/info', locals: { user: user } %>
+      <% end %>
+    </div>
+  </div>
+</div>

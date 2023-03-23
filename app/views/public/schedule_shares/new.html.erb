@@ -1,0 +1,6 @@
+<%= link_to "スケジュールを共有する", new_schedule_schedule_share_path(@schedule) %>
+
+<% @schedule.shared_users.each do |user| %>
+  <%= user.name %>
+  <%= link_to "共有を解除", schedule_schedule_share_path(@schedule, user.schedule_shares.find_by(schedule_id: @schedule.id)), method: :delete, data: { confirm: '共有を解除しますか？' } %>
+<% end %>
