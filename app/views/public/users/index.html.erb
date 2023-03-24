@@ -4,7 +4,7 @@
     <div class="col-md-3">
       <h2>User info</h2>
       <%= render 'public/users/info', user: current_user %>
-      <%= link_to my_page_edit_path, class: "btn btn-outline-secondary btn-block" do %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %></br>
       <p></p>

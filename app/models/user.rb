@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   #スケジュール共有
-  has_many :schedules
+  has_many :schedules, dependent: :destroy
   has_many :schedule_shares, dependent: :destroy
   has_many :shared_schedules, through: :schedule_shares, source: :schedule
 end

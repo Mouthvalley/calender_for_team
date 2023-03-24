@@ -5,10 +5,12 @@
   <h2>共有先ユーザー</h2>
   <% current_user.followings.each do |user| %>
     <div>
-      <%= check_box_tag 'schedule_share[user_ids][]', user.membership_id %>
+      <%= check_box_tag 'schedule_share[user_ids][]', user.id, @schedule.shared_with?(user), id: "user_#{user.id}" %>
       <%= "#{user.last_name}#{user.first_name}" %>
     </div>
   <% end %>
   <br>
   <%= form.submit '共有する', class: 'btn btn-primary' %>
 <% end %>
+
+<%= link_to "スケジュール一覧に戻る", user_schedules_path %>

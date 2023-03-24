@@ -42,9 +42,10 @@ class Public::UsersController < ApplicationController
   private
 
   def set_user
-    # @user = current_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id].present?
+    raise ActiveRecord::RecordNotFound unless @user
   end
+
 
   def user_params
     params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :profile_image, :password)

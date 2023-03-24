@@ -3,7 +3,8 @@
     <div class="col-md-3">
       <h4>スケジュール詳細</h4>
       <%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
-      <%= @schedule.schedule_content %></br>
+      作成者: <%= @schedule.user.last_name + @schedule.user.first_name %></br>
+      内　容：<%= @schedule.schedule_content %></br>
 
       <%= link_to '編集', edit_user_schedule_path(current_user, @schedule) %></br>
       <%= link_to '削除', user_schedule_path(current_user, @schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %></br>

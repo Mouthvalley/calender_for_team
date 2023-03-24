@@ -1,16 +1,21 @@
 <h3>スケジュール一覧</h3>
 
 <ul>
-  <% @schedules.each do |schedule| %>
-  <%# current_user.schedules.each do |schedule| %>
+  <% current_user.schedules.each do |schedule| %>
     <li>
+      作成者: <%= schedule.user.last_name + schedule.user.first_name %></br>
+      内　容：<%= schedule.schedule_content %></br>
       <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
-      <%= schedule.schedule_content %>
-      <%= schedule.published_at %>
+      <%= schedule.published_at %></br>
       <%= link_to '詳細', user_schedule_path(current_user, schedule) %>
-      <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
-      <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-      <%= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
+
+      <% if current_user.id == schedule.user_id %>
+        <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
+        <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        <%= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
+      <%# else %>
+        <%#= link_to '出欠確認', user_schedule_participation_path(current_user, schedule) %>
+      <% end %>
     </li>
   <% end %>
 </ul>
