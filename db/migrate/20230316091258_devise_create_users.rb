@@ -16,9 +16,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
-      t.string :first_name_kana, null: false 
+      t.string :first_name_kana, null: false
       t.boolean :status, null: false,  default: false
-      t.timestamps null: false, default: ->{ "CURRENT_TIMESTAMP" }
+      t.timestamps
     end
 
     add_index :users, :email,                unique: true
