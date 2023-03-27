@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :schedules do
         resources :schedule_shares, only: [:new, :create, :destroy]
       end
-      resource :relationships, only: [:create, :destroy,]
+      resource :relationships, only: [:create, :destroy]
         member do
           get :followings, :followers
           post :create, :destroy

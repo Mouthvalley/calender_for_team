@@ -66,4 +66,5 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 
-# gem 'jquery-rails'
+gem "simple_calendar", "~> 2.4"
+gem 'rails-i18n'

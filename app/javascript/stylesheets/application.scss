@@ -5,3 +5,16 @@
 li {
   margin-bottom: 10px;
 }
+
+// <style>
+//   .calendar {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// </style>
+
+// <%= month_calendar do |date| %>
+//   <div class="calendar">
+//     <%= date.day %>
+//   </div>
+// <% end %>
