@@ -1,12 +1,28 @@
-<%= form_with url: user_schedule_schedule_shares_path(user_id: current_user.id, schedule_id: @schedule.id), method: :post do |form| %>
-
-  <h2>共有先ユーザー</h2>
-  <% current_user.followings.each do |user| %>
-    <div>
-      <%= check_box_tag 'schedule_share[user_ids][]', user.membership_id %>
-      <%= "#{user.last_name}#{user.first_name}" %>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h2>Schedules List</h2>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %></br>
+      <p></p>
+      <%= render 'public/schedules/form', schedule: @schedule %></br>
     </div>
-  <% end %>
-  <br>
-  <%= form.submit '共有する', class: 'btn btn-primary' %>
-<% end %>
+    <div class="col-md-1"></div>
+
+    <div class="col-md-9">
+      <%= form_with url: user_schedule_schedule_shares_path(user_id: current_user.id, schedule_id: @schedule), method: :post do |form| %>
+        <h2>共有先ユーザー</h2>
+        <% current_user.followings.each do |user| %>
+          <div>
+            <%= check_box_tag 'schedule_share[user_ids][]', user.membership_id %>
+            <%= "#{user.last_name}#{user.first_name}" %>
+          </div>
+        <% end %>
+        <br>
+        <%= form.submit '共有する', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

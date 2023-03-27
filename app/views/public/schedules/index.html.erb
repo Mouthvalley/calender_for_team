@@ -21,11 +21,12 @@
             内容：<%= schedule.schedule_content %>
             <%= schedule.published_at %>
             <%= link_to '詳細', user_schedule_path(current_user, schedule) %>
-
             <% if current_user.id == schedule.user_id %>
               <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
               <%= link_to '削除', user_schedule_path(schedule.user_id, schedule.id), method: :delete, local: true, data: { confirm: '本当に削除しますか？' } %>
+              <%= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
             <% else %>
+
             <% end %>
           </li>
         <% end %>

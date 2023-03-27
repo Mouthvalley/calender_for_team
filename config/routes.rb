@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     get 'my_page' => 'users#index', as: 'my_page'
     get 'my_page/edit/:id' => 'users#edit', as: 'my_page_edit'
     resources :users, only: [:update] do
-      resources :schedules
+      resources :schedules do
+        resources :schedule_shares, only: [:new, :create, :destroy]
+      end
       resource :relationships, only: [:create, :destroy,]
         member do
           get :followings, :followers
