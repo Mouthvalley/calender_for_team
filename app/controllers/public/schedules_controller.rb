@@ -1,5 +1,5 @@
 class Public::SchedulesController < ApplicationController
-  before_action :set_schedule, only: [:edit, :update]
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = current_user
@@ -11,14 +11,13 @@ class Public::SchedulesController < ApplicationController
     end
   end
 
-  #create を変更するとスケジュールを作成できなくなる可能性がある
   def create
     @schedule = current_user.schedules.build(schedule_params) # ログイン中のユーザーに紐づくスケジュールを作成
     if @schedule.save
       redirect_to user_schedules_path, notice: 'スケジュールを作成しました'
     else # 保存に失敗した場合
       flash.now[:alert] = 'スケジュールの作成に失敗しました'
-      @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
+      # @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
       render :index
     end
   end
@@ -42,8 +41,8 @@ class Public::SchedulesController < ApplicationController
   end
 
   def destroy
-    @schedule = Schedule.find(params[:id])
-    @schedule.destroy
+    schedule = Schedule.find(params[:id])
+    schedule.destroy
     redirect_to user_schedules_path, notice: 'スケジュールを削除しました'
   end
 

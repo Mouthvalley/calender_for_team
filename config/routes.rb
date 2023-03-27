@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     get 'my_page' => 'users#index', as: 'my_page'
     get 'my_page/edit/:id' => 'users#edit', as: 'my_page_edit'
     resources :users, only: [:update] do
+      resources :schedules
       resource :relationships, only: [:create, :destroy,]
         member do
-        get :followings, :followers
-        post :create, :destroy
+          get :followings, :followers
+          post :create, :destroy
         end
-      resources :schedules
     end
   end
 end

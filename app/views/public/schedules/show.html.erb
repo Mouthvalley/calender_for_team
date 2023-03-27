@@ -1,39 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <h4>スケジュール詳細</h4>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h3>スケジュール詳細</h3>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %></br>
+      <p></p>
+      <%= render 'public/schedules/form', schedule: @schedule %></br>
+      <%= link_to "Schedules List", user_schedules_path(current_user), class: "blue-button" %></br>
+    </div>
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-9">
       <%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
       作成者: <%#= @schedule.user.last_name + @schedule.user.first_name %></br>
       作成者: <%= User.find(@schedule.user_id).last_name + User.find(@schedule.user_id).first_name %></br>
       内　容：<%= @schedule.schedule_content %></br>
 
       <%= link_to '編集', edit_user_schedule_path(current_user, @schedule) %></br>
-      <%= link_to '削除', user_schedule_path(current_user, @schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %></br>
-      <%= link_to 'スケジュール一覧へ戻る', user_schedules_path %></br>
-      <%= link_to 'User Infoへ戻る', my_page_path %></br>
-    </div>
-    <div class="col-md-6"></div>
-    <div class="col-md-3">
-      <p>フォローしているユーザー</p>
-      <% @user.followings.each do |user| %>
-        <%= render partial: 'public/users/info', locals: { user: user } %>
-      <% end %>
+      <%= link_to '削除', user_schedule_path(@schedule.user_id, @schedule.id), method: :delete, local: true, data: { confirm: '本当に削除しますか？' } %>
     </div>
   </div>
 </div>
-
-<%#= form_with(model: [current_user, @schedule_share], url: create_share_user_schedule_schedule_share_path(schedule_id: @schedule.id), local: true) do |form| %>
-  <%#= form.hidden_field :schedule_id, value: @schedule.id %>
-  <%#= form.submit "共有する" %>
-<%# end %>
-
-<%#= form_with(model: [current_user, @schedule_share], url: create_share_user_schedule_schedule_share_path(schedule_id: @schedule.id), local: true) do |form| %>
-  <%#= form.hidden_field :schedule_id, value: @schedule.id %>
-
-  <%# current_user.followers.each do |follower| %>
-    <%#= check_box_tag "schedule_share[user_ids][]", follower.id %>
-    <%#= label_tag "schedule_share_user_ids_#{follower.id}" %>
-  <%# end %>
-
-  <%#= form.submit "共有する" %>
-<%# end %>

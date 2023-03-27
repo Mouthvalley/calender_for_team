@@ -1,2 +1,7 @@
+// CSSの記述はここで行う.全てのページに反映される.
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+li {
+  margin-bottom: 10px;
+}
