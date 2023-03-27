@@ -10,7 +10,17 @@
         <% if user_signed_in? %>
           <li>
             <%=  link_to my_page_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> Users
+              <i class="fas fa-user"></i> User
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to followings_user_path(@user),class: 'nav-link text-light' do %>
+              <i class="fas fa-users"></i> Followings
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to user_schedules_path(current_user),class: 'nav-link text-light' do %>
+              <i class="far fa-calendar-alt"></i> Schedules
             <% end %>
           </li>
           <li>

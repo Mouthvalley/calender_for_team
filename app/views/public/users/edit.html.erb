@@ -1,38 +1,45 @@
-<h1>User Edit</h1>
-<p>This is the users edit page.</p>
+  <div class='container'>
+    <div class="col-md-10">
+      <h3>User Edit Page</h3>
+      <p>This is the users edit page.</p>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <div>
-    <%= f.label :last_name, '苗字' %>
-    <%= f.text_field :last_name %>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <div>
+          <%= f.label :last_name, '苗字' %>
+          <%= f.text_field :last_name %>
+        </div>
+        <div>
+          <%= f.label :first_name, '名前' %>
+          <%= f.text_field :first_name %>
+        </div>
+        <div>
+          <%= f.label :last_name_kana, 'カナ(苗字)' %>
+          <%= f.text_field :last_name_kana %>
+        </div>
+        <div>
+          <%= f.label :first_name_kana, 'カナ(名前)' %>
+          <%= f.text_field :first_name_kana %>
+        </div>
+        <div>
+          <%= f.label :email, 'メールアドレス' %>
+          <%= f.email_field :email %>
+        </div>
+        <div>
+          <%= f.label :profile_image %>
+            <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+          <% if f.object.profile_image.attached? %>
+            <%= image_tag f.object.profile_image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
+        </div>
+        <%= f.submit '更新する', class: 'btn btn-success' %>
+      </div>
+      <% end %>
+      <div class="col-12">
+        <p></p>
+         <%= link_to "マイページに戻る", my_page_path, class: "btn btn-primary" %>
+         <p></p>
+         <%= button_to '退会する', unsubscribe_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger" %>
+      </div>
   </div>
-  <div>
-    <%= f.label :first_name, '名前' %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div>
-    <%= f.label :last_name_kana, 'カナ(苗字)' %>
-    <%= f.text_field :last_name_kana %>
-  </div>
-  <div>
-    <%= f.label :first_name_kana, 'カナ(名前)' %>
-    <%= f.text_field :first_name_kana %>
-  </div>
-  <div>
-    <%= f.label :email, 'メールアドレス' %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :profile_image %>
-      <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
-    <% if f.object.profile_image.attached? %>
-      <%= image_tag f.object.profile_image, size: "200x200" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "100x100" %>
-    <% end %>
-  </div>
-  <%= f.submit '更新する' %>
-<% end %>
-<%= link_to "マイページに戻る", my_page_path %>
-
-<%= button_to '退会する', unsubscribe_user_path(current_user), method: :delete, data: { confirm: '本当に退会しますか？' } %>

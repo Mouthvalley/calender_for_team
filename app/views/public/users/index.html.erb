@@ -1,22 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <h2>User info</h2>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h2>User Page</h2>
       <%= render 'public/users/info', user: current_user %>
       <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %></br>
       <p></p>
       <%= render 'public/schedules/form', schedule: @schedule %></br>
-      <%= link_to "スケジュール一覧", user_schedules_path(current_user), class: "blue-button" %></br>
-
+      <%= link_to "Schedules List", user_schedules_path(current_user), class: "blue-button" %></br>
     </div>
-    <div class="col-md-6 text-center">
+    <div class="col-md-7 text-center">
 
     </div>
     <div class="col-md-3">
-      <%= render partial: 'public/searches/search', locals: { url: search_path } %>
-      <%= link_to "フォロー一覧", followings_user_path(@user) %></br>
+      <%= render partial: 'public/searches/search', locals: { url: search_path } %></br>
+      <p><%= link_to "Followings list", followings_user_path(@user) %></p>
       <% @user.followings.each do |user| %>
         <%= render partial: 'public/users/info', locals: { user: user } %>
       <% end %>

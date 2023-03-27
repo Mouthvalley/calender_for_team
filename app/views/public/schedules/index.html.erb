@@ -1,24 +1,36 @@
-<h3>スケジュール一覧</h3>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h2>Schedules List</h2>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %></br>
+      <p></p>
+      <%= render 'public/schedules/form', schedule: @schedule %></br>
+    </div>
 
-<ul>
-  <% current_user.schedules.each do |schedule| %>
-    <li>
-      作成者: <%= schedule.user.full_name %></br>
-      内　容：<%= schedule.schedule_content %></br>
-      <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
-      <%= schedule.published_at %></br>
-      <%= link_to '詳細', user_schedule_path(current_user, schedule) %>
+    <div class="col-md-1"></div>
 
-      <% if current_user.id == schedule.user_id %>
-        <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
-        <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-        <%#= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
-      <% else %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+    <div class="col-md-9">
+      <ul>
+        <% current_user.schedules.order(schedule_date: :desc).each do |schedule| %>
+          <li>
+            <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
+            作成者: <%= schedule.user.full_name %>
+            内容：<%= schedule.schedule_content %>
+            <%= schedule.published_at %>
+            <%= link_to '詳細', user_schedule_path(current_user, schedule) %>
 
-<%= render 'public/schedules/form' %>
-
-<%= link_to 'User Infoへ戻る', my_page_path %></br>
+            <% if current_user.id == schedule.user_id %>
+              <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
+              <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+              <%#= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
+            <% else %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,41 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <h5>フォロー一覧</h5>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h2>Followings Page</h2>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %></br>
+      <p></p>
+      <%= render 'public/schedules/form', schedule: @schedule %></br>
+      <%= link_to "スケジュール一覧", user_schedules_path(current_user), class: "blue-button" %></br>
+    </div>
+    <div class="col-md-7 text-center">
+
+    </div>
+    <div class="col-md-3">
+      <%= render partial: 'public/searches/search', locals: { url: search_path } %></br>
+      <p>Followings list</p>
       <% @users.each do |user| %>
-        <%= user.membership_id %>
-        <%= "#{user.last_name}#{user.first_name}" %>
+      <table class='table'>
+        <tr>
+          <% if user.profile_image.attached? %>
+            <%= image_tag url_for(user.profile_image), size: "100x100" %>
+          <% else %>
+            <%= image_tag "no_image.jpg", size: "100x100" %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>会員ID</th>
+          <th><%= user.membership_id %></th>
+          <th><%= render 'public/relationships/button', user: user %></th>
+        </tr>
+        <tr>
+          <th>ユーザー名</th>
+          <th><%= "#{user.last_name}#{user.first_name}" %></th>
+          <th></th>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>

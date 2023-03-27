@@ -1,43 +1,46 @@
-<div class="search">
-  <%= form_with(url: search_path, method: :get, local: true) do |form| %>
-    <%= form.text_field :query, placeholder: '会員ID検索' %>
-    <%= form.submit '検索する' %>
-  <% end %>
-</div>
+<div class="container-fluid px-0">
+  <div class="row no-gutters">
+    <div class="col-md-2 pl-3">
+      <h2>Search Page</h2>
+      <%= render 'public/users/info', user: current_user %>
+      <%= link_to my_page_edit_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %></br>
+      <p></p>
+      <%= render 'public/schedules/form', schedule: @schedule %></br>
+      <%= link_to "スケジュール一覧", user_schedules_path(current_user), class: "blue-button" %></br>
+    </div>
+    <div class="col-md-7 text-center">
 
-<% if @users.present? %>
-  <h3>検索結果</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>会員ID</th>
-        <th>名前</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.membership_id %></td>
-          <td><%= "#{user.last_name} #{user.first_name}" %></td>
-          <% if user.profile_image.attached? %>
-            <td><%= image_tag url_for(user.profile_image), size: "100x100" %></td>
+    </div>
+    <div class="col-md-3">
+      <%= render partial: 'public/searches/search', locals: { url: search_path } %>
+        <% if @users.present? %>
+        <h3><u>Search results</u></h3>
+        <table class='table'>
+          <% @users.each do |user| %>
+          <tr>
+            <% if user.profile_image.attached? %>
+              <%= image_tag url_for(user.profile_image), size: "100x100" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", size: "100x100" %>
+            <% end %>
+          </tr>
+          <tr>
+            <th>会員ID</th>
+            <th><%= user.membership_id %></th>
+            <th><%= render 'public/relationships/button', user: user %></th>
+          </tr>
+          <tr>
+            <th>ユーザー名</th>
+            <th><%= "#{user.last_name}#{user.first_name}" %></th>
+            <th></th>
+          </tr>
+            <% end %>
           <% else %>
-            <td><%= image_tag "no_image.jpg", size: "100x100" %></td>
+          <p>ユーザーが見つかりませんでした。</p>
           <% end %>
-          <td>
-            <%= render 'public/relationships/button', user: user %>
-          </td>
-          <td>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>ユーザーが見つかりませんでした。</p>
-<% end %>
-
-
-<%= link_to 'UserInへ戻る', my_page_path %>
+        </table>
+    </div>
+  </div>
+</div>
