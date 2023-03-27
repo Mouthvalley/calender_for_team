@@ -1,9 +1,0 @@
-<h2>出欠確認</h2>
-<%= form_with model: @attendance, local: true do |form| %>
-  <%= form.hidden_field :schedule_id %>
-  <div>
-    <%= form.label :status, '出欠' %>
-    <%= form.select :status, ['参加', '不参加', '未定'], prompt: '選択してください' %>
-  </div>
-  <%= form.submit '出欠を確定する', class: 'btn btn-primary' %>
-<% end %>

@@ -3,7 +3,8 @@
     <div class="col-md-3">
       <h4>スケジュール詳細</h4>
       <%= @schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %></br>
-      作成者: <%= @schedule.user.last_name + @schedule.user.first_name %></br>
+      作成者: <%#= @schedule.user.last_name + @schedule.user.first_name %></br>
+      作成者: <%= User.find(@schedule.user_id).last_name + User.find(@schedule.user_id).first_name %></br>
       内　容：<%= @schedule.schedule_content %></br>
 
       <%= link_to '編集', edit_user_schedule_path(current_user, @schedule) %></br>
@@ -20,3 +21,19 @@
     </div>
   </div>
 </div>
+
+<%#= form_with(model: [current_user, @schedule_share], url: create_share_user_schedule_schedule_share_path(schedule_id: @schedule.id), local: true) do |form| %>
+  <%#= form.hidden_field :schedule_id, value: @schedule.id %>
+  <%#= form.submit "共有する" %>
+<%# end %>
+
+<%#= form_with(model: [current_user, @schedule_share], url: create_share_user_schedule_schedule_share_path(schedule_id: @schedule.id), local: true) do |form| %>
+  <%#= form.hidden_field :schedule_id, value: @schedule.id %>
+
+  <%# current_user.followers.each do |follower| %>
+    <%#= check_box_tag "schedule_share[user_ids][]", follower.id %>
+    <%#= label_tag "schedule_share_user_ids_#{follower.id}" %>
+  <%# end %>
+
+  <%#= form.submit "共有する" %>
+<%# end %>

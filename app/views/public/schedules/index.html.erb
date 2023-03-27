@@ -3,7 +3,7 @@
 <ul>
   <% current_user.schedules.each do |schedule| %>
     <li>
-      作成者: <%= schedule.user.last_name + schedule.user.first_name %></br>
+      作成者: <%= schedule.user.full_name %></br>
       内　容：<%= schedule.schedule_content %></br>
       <%= schedule.schedule_date.strftime('%Y/%m/%d %H:%M') %>
       <%= schedule.published_at %></br>
@@ -12,9 +12,8 @@
       <% if current_user.id == schedule.user_id %>
         <%= link_to '編集', edit_user_schedule_path(current_user, schedule) %>
         <%= link_to '削除', user_schedule_path(current_user, schedule), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-        <%= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
-      <%# else %>
-        <%#= link_to '出欠確認', user_schedule_participation_path(current_user, schedule) %>
+        <%#= link_to "共有する", new_user_schedule_schedule_share_path(@user, schedule) %>
+      <% else %>
       <% end %>
     </li>
   <% end %>
@@ -22,4 +21,4 @@
 
 <%= render 'public/schedules/form' %>
 
-<%= link_to 'User Infoへ戻る', my_page_path %>
+<%= link_to 'User Infoへ戻る', my_page_path %></br>

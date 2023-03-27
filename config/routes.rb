@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: "public/sessions"
 }
-
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
   scope module: :public do
     root to: 'homes#top'
@@ -16,16 +18,12 @@ Rails.application.routes.draw do
     get 'my_page' => 'users#index', as: 'my_page'
     get 'my_page/edit/:id' => 'users#edit', as: 'my_page_edit'
     resources :users, only: [:update] do
-      resource :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy,]
         member do
-          get :followings, :followers
+        get :followings, :followers
+        post :create, :destroy
         end
-      resources :schedules do
-        resources :schedule_shares, only: [:new, :create, :edit, :update, :destroy] do
-          get 'share_with_attendance', on: :member
-        end
-        resources :attendances, only: [:create, :update, :destroy]
-      end
+      resources :schedules
     end
   end
 end

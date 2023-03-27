@@ -1,5 +1,4 @@
 <div class="container">
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   <div class="row">
     <div class="col-md-3">
       <h2>User info</h2>
@@ -9,9 +8,12 @@
       <% end %></br>
       <p></p>
       <%= render 'public/schedules/form', schedule: @schedule %></br>
-      <%= link_to "スケジュール一覧", user_schedules_path(current_user) %></br>
+      <%= link_to "スケジュール一覧", user_schedules_path(current_user), class: "blue-button" %></br>
+
     </div>
-    <div class="col-md-6 text-center">中央</div>
+    <div class="col-md-6 text-center">
+
+    </div>
     <div class="col-md-3">
       <%= render partial: 'public/searches/search', locals: { url: search_path } %>
       <%= link_to "フォロー一覧", followings_user_path(@user) %></br>

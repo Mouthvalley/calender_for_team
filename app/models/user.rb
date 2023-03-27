@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  def full_name
+    "#{last_name}#{first_name}"
+  end
+
   #membership_idを生成するメソッド
   before_create :generate_membership_id
   def generate_membership_id

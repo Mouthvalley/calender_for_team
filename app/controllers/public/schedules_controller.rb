@@ -5,7 +5,6 @@ class Public::SchedulesController < ApplicationController
     @user = current_user
     @schedule = Schedule.new
     @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
-
     respond_to do |format|
       format.html # index.html.erbを表示する
       format.json { render json: @schedules } # JSONとしてすべてのスケジュールを返す
@@ -37,8 +36,9 @@ class Public::SchedulesController < ApplicationController
   end
 
   def show
-    @schedule = Schedule.find(params[:id])
     @user = current_user
+    @schedule = Schedule.find(params[:id])
+    @schedule_share = current_user.schedule_shares.new
   end
 
   def destroy
@@ -47,8 +47,8 @@ class Public::SchedulesController < ApplicationController
     redirect_to user_schedules_path, notice: 'スケジュールを削除しました'
   end
 
-  private
 
+  private
   def schedule_params
     params.require(:schedule).permit(:schedule_date, :schedule_content, :published_at)
   end
