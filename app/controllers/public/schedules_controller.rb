@@ -4,19 +4,19 @@ class Public::SchedulesController < ApplicationController
   def index
     @user = current_user
     @schedule = Schedule.new
-    # @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
-    @schedules = current_user.schedules.map do |schedule|
-      {
-        title: schedule.schedule_content,
-        start: schedule.schedule_date.iso8601,
-        end: schedule.schedule_date.iso8601,
-        url: user_schedule_path(current_user, schedule)
-      }
-    end
-    respond_to do |format|
-      format.html # index.html.erbを表示する
-      format.json { render json: @schedules } # JSONとしてすべてのスケジュールを返す
-    end
+    @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
+    # シンプルカレンダーで使用するためのハッシュの配列を作成
+  #   @calendar_events = @schedules.map do |schedule|
+  #     {
+  #       id: schedule.id,
+  #       title: schedule.content,
+  #       start: schedule.start_time.to_datetime # DateTimeオブジェクトに変換する
+  #     }
+  #   end
+
+  #   @calendar_options = {
+  #     events: @calendar_events # ハッシュの配列を渡す
+  #   }
   end
 
   def create
@@ -58,7 +58,7 @@ class Public::SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(:schedule_date, :schedule_content, :published_at)
+    params.require(:schedule).permit(:schedule_date, :schedule_content, :published_at, :title, :content, :start_time)
   end
 
   def set_schedule

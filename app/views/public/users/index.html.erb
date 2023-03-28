@@ -10,11 +10,19 @@
       <%= render 'public/schedules/form', schedule: @schedule %></br>
       <%= link_to "Schedules List", user_schedules_path(current_user), class: "blue-button" %></br>
     </div>
-    <div class="col-md-7 px-auto px-10 text-center">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-5 text-center">
+      <div class="month_calendar">
       <%= month_calendar do |date| %>
         <%= date.day %>
       <% end %>
+      </div>
     </div>
+
+    <div class="col-md-1"></div>
+
     <div class="col-md-3">
       <%= render partial: 'public/searches/search', locals: { url: search_path } %></br>
       <p><%= link_to "Followings list", followings_user_path(@user) %></p>

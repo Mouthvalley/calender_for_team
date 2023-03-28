@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about', to: 'homes#about'
     get "search" => "searches#search"
+    get 'events/index'
+    resources :events
 
     #unsubscribe：退会機能
     delete 'users/unsubscribe/:id' => 'users#unsubscribe', as: 'unsubscribe_user'
