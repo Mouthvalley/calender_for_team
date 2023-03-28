@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 2023_03_28_092200) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
+    t.string "title"
+    t.datetime "start_time"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
