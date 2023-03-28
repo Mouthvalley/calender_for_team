@@ -5,18 +5,6 @@ class Public::SchedulesController < ApplicationController
     @user = current_user
     @schedule = Schedule.new
     @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
-    # シンプルカレンダーで使用するためのハッシュの配列を作成
-  #   @calendar_events = @schedules.map do |schedule|
-  #     {
-  #       id: schedule.id,
-  #       title: schedule.content,
-  #       start: schedule.start_time.to_datetime # DateTimeオブジェクトに変換する
-  #     }
-  #   end
-
-  #   @calendar_options = {
-  #     events: @calendar_events # ハッシュの配列を渡す
-  #   }
   end
 
   def create
@@ -58,7 +46,7 @@ class Public::SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(:schedule_date, :schedule_content, :published_at, :title, :content, :start_time)
+    params.require(:schedule).permit(:schedule_date, :schedule_content, :published_at)
   end
 
   def set_schedule
