@@ -5,6 +5,7 @@ class Public::SchedulesController < ApplicationController
     @user = current_user
     @schedule = Schedule.new
     @schedules = Schedule.all.includes(:schedule_shares).order(published_at: :desc)
+    
   end
 
   def create
